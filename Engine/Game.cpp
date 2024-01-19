@@ -75,8 +75,8 @@ BOOL Engine::Game::InitInstance(int cmdShow)
 		nullptr
 		);
 
-	/*if (m_desc.hWnd)
-		return FALSE;*/
+	if (!m_desc.hWnd)
+		return FALSE;
 
 	::ShowWindow(m_desc.hWnd, cmdShow);
 	::UpdateWindow(m_desc.hWnd);

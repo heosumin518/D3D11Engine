@@ -1,8 +1,9 @@
 #pragma once
 #include "ModelLoader.h"
+#include "ResourceBase.h"
 
 // TODO: 텍스처 클래스 만들어서 목록 관리.
-class Material
+class Material : public ResourceBase
 {
 public:
 	Material();

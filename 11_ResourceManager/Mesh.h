@@ -3,7 +3,6 @@
 #include "Node.h"
 #include "Struct.h"
 
-
 // TODO: Mesh 는 이제 추상 클래스로 만들자. Static 과 Skeletal 로 분리해서 관리.
 class Mesh
 {
@@ -29,7 +28,7 @@ public:
 
 	Matrix GetNodeTransform() { return m_connectedNode->m_world; }
 
-private:
+protected:
 	friend ModelLoader;
 	friend Model;
 
