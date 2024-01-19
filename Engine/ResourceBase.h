@@ -3,7 +3,7 @@
 
 namespace Engine
 {
-	enum class ResourceType
+	enum class ResourceType : uint8
 	{
 		None = -1,
 		StaticMesh,
@@ -28,7 +28,7 @@ namespace Engine
 
 		ResourceType GetType() { return m_type; }
 
-		const wstring& GetName() { return m_name; }
+		const string& GetName() { return m_name; }
 
 	protected:
 		virtual void Load(const wstring& path) { }
@@ -36,6 +36,6 @@ namespace Engine
 
 	protected:
 		ResourceType m_type;
-		wstring m_name;
+		string m_name;
 	};
 }

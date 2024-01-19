@@ -54,6 +54,15 @@
     <ClCompile Include="SkeletalMeshResource.cpp">
       <Filter>Resource</Filter>
     </ClCompile>
+    <ClCompile Include="ResourceManager.cpp">
+      <Filter>Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="Helper.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimationResource.cpp">
+      <Filter>Resource</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -102,6 +111,15 @@
       <Filter>Resource</Filter>
     </ClInclude>
     <ClInclude Include="SkeletalMeshResource.h">
+      <Filter>Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="ResourceManager.h">
+      <Filter>Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Helper.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationResource.h">
       <Filter>Resource</Filter>
     </ClInclude>
   </ItemGroup>

@@ -3,11 +3,13 @@
 #define WIN32_LEAN_AND_MEAN		 // 거의 사용되지 않는 내용을 Windows 헤더에서 제외합니다.
 
 #include "Define.h"
+#include "Types.h"
 
 // STL
 #include <memory>
 #include <vector>
 #include <list>
+#include <array>
 #include <map>
 #include <filesystem>
 #include <directxtk/SimpleMath.h>
@@ -42,10 +44,13 @@ using namespace DirectX::SimpleMath;
 #pragma comment(lib, "d3d11.lib")
 #pragma comment(lib, "d3dcompiler.lib")
 
+
 // Engine
+#include "Helper.h"
 #include "Game.h"
 #include "Graphics.h"
 #include "GameProcessor.h"
 #include "TimeManager.h"
 #include "RenderManager.h"
+#include "ResourceManager.h"
 #include "ConstantBuffer.h"

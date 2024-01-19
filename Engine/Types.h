@@ -1,4 +1,5 @@
 #pragma once
+#include <cstdint>
 
 // types
 using uint8 = uint8_t;
