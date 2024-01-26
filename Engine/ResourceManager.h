@@ -1,87 +1,33 @@
 #pragma once
-#include "ResourceBase.h"
 
 namespace Engine
 {
+	class TextureResource;
 	class AnimationResource;
-	class StaticMeshResource;
-	class SkeletalMeshResource;
-	class Texture;
-	class Material;
-	//class Animation;
-
+	class StaticMeshSceneResource;
+	class SkeletalMeshSceneResource;
 	class ResourceManager
 	{
 		DECLARE_SINGLE(ResourceManager);
 
-	public:
+		// FBX파일 경로로 스테틱 메시,머터리얼 정보 얻어오기
+		shared_ptr<StaticMeshSceneResource> CreateStaticMeshSceneResource(string filePath);
 
-		void Init();
+		// FBX파일 경로로 스켈레탈 메시,머터리얼 정보,기본 포즈 애니메이션 얻어오기
+		shared_ptr<SkeletalMeshSceneResource> CreateSkeletalMeshSceneResource(string filePath);
 
-		template <typename T>
-		void Load(const wstring& path);	// Mesh, Texture, Material, Animation 등 모든 리소스를 이 함수로 로드한다.
+		// 같은 머터리얼 내에서도 같은 텍스처를 사용할수 있으므로 공유 목록에서 파일경로 확인해서 얻어오기
+		shared_ptr<TextureResource> CreateTextureResource(wstring filePath);
 
-		template <typename T>
-		void Add(const wstring& key);	// 리소스를 생성하고 목록에 추가한다.
-
-		template <typename T>
-		shared_ptr<T> Get(const wstring& key);
-
-		template<typename T>
-		ResourceType GetResourceType();
+		// FBX파일 경로로 애니메이션 정보 얻어오기
+		shared_ptr<AnimationResource> CreateAnimationResource(string filePath);
 
 	private:
-		using KeyObjMap = map<wstring/*key*/, shared_ptr<ResourceBase>>;
-		array<KeyObjMap, RESOURCE_TYPE_COUNT> m_resources;
+		map<string, weak_ptr<StaticMeshSceneResource>> m_staticMeshSceneMap;
+		map<string, weak_ptr<SkeletalMeshSceneResource>> m_skeletalMeshSceneMap;
+		map<wstring, weak_ptr<TextureResource>> m_materialTextureMap;
+		map<string, weak_ptr<AnimationResource>> m_animationMap;
 	};
-
-	template <typename T>
-	void ResourceManager::Load(const wstring& path)
-	{
-		auto objectType = GetResourceType<T>();
-		KeyObjMap& keyObjMap = m_resources[static_cast<uint8>(objectType)];
-
-		// path를 key 값으로 리소스를 찾는다.
-		auto findIt = keyObjMap.find(path);
-		if (findIt != keyObjMap.end())
-			return static_pointer_cast<T>(findIt->second);
-
-		// 찾지 못했다면 리소스를 생성하고 목록에 추가.
-		shared_ptr<T> object = make_shared<T>();
-		object->Load(path);
-		keyObjMap[path] = object;
-	}
-
-	template <typename T>
-	shared_ptr<T> ResourceManager::Get(const wstring& key)
-	{
-		ResourceType resourceType = GetResourceType<T>();
-		KeyObjMap& keyObjMap = m_resources[static_cast<uint8>(resourceType)];
-
-		auto findIt = keyObjMap.find(key);
-		if (findIt != keyObjMap.end())
-			return static_pointer_cast<T>(findIt->second);
-
-		return nullptr;
-	}
-
-	template <typename T>
-	ResourceType ResourceManager::GetResourceType()
-	{
-		if (std::is_same_v<T, Texture>)
-			return ResourceType::Texture;
-		if (std::is_same_v<T, StaticMeshResource>)
-			return ResourceType::StaticMesh;
-		if (std::is_same_v<T, SkeletalMeshResource>)
-			return ResourceType::SkeletalMesh;
-		if (std::is_same_v<T, Material>)
-			return ResourceType::Material;
-		if (std::is_same_v<T, AnimationResource>)
-			return ResourceType::Animation;
-
-		assert(false);
-		return ResourceType::None;
-	}
 }
 
 

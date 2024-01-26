@@ -1,5 +1,4 @@
 #pragma once
-#include "ResourceBase.h"
 #include "Texture.h"
 
 namespace Engine
@@ -20,9 +19,8 @@ namespace Engine
 		
 	};
 
-	class Material : public ResourceBase
+	class Material
 	{
-		using Super = ResourceBase;
 
 	public:
 		Material();

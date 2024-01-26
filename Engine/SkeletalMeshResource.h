@@ -1,11 +1,9 @@
 #pragma once
-#include "ResourceBase.h"
 
 namespace Engine
 {
-	class SkeletalMeshResource : public ResourceBase
+	class SkeletalMeshResource
 	{
-		using Super = ResourceBase;
 	public:
 		SkeletalMeshResource();
 		~SkeletalMeshResource();

@@ -1,11 +1,9 @@
 #pragma once
-#include "ResourceBase.h"
 
 namespace Engine
 {
-	class StaticMeshResource : public ResourceBase
+	class StaticMeshResource 
 	{
-		using Super = ResourceBase;
 
 	public:
 		StaticMeshResource();
@@ -13,5 +11,9 @@ namespace Engine
 
 	};
 }
+
+class StaticMeshResource
+{
+};
 
 
